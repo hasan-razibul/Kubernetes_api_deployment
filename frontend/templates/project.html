@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Project Details</title>
+</head>
+<body>
+    <h1>{{ project.name }}</h1>
+    <p>{{ project.description }}</p>
+    <p>Status: {{ project.status }}</p>
+    <a href="{{ url_for('get_project_pdf', project_id=project.id) }}">Download PDF</a>
+    <form id="updateProjectForm" method="post" enctype="multipart/form-data">
+        <input type="text" name="name" placeholder="Name" value="{{ project.name }}">
+        <input type="text" name="description" placeholder="Description" value="{{ project.description }}">
+        <select name="status">
+            <option value="active" {% if project.status == 'active' %}selected{% endif %}>Active</option>
+            <option value="inactive" {% if project.status == 'inactive' %}selected{% endif %}>Inactive</option>
+        </select>
+        <input type="file" name="pdf_file">
+        <input type="submit" value="Update">
+    </form>
+    <form id="deleteProjectForm" method="POST" action="{{ url_for('delete_project', project_id=project.id) }}">
+        <input type="submit" value="Delete">
+    </form>
+</body>
+</html>
+
+<script>
+    var projectId = "{{ project.id }}";
+</script>
+
+<script>
+window.onload = function() {
+    document.getElementById('updateProjectForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        var formData = new FormData();
+        if (this.name.value) formData.append('name', this.name.value);
+        if (this.description.value) formData.append('description', this.description.value);
+        if (this.status.value) formData.append('status', this.status.value);
+        if (this.pdf_file.files[0]) formData.append('pdf_file', this.pdf_file.files[0]);
+        fetch(`/projects/${projectId}`, {
+            method: 'PUT',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => window.location.href = `/projects/${data.project_id}`)
+        .catch(error => console.error('Error:', error));
+    });
+    document.getElementById('deleteProjectForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        fetch(`/projects/${projectId}`, {
+            method: 'DELETE',
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+        })
+        .then(() => window.location.href = `/projects`)  // redirect to the /projects route
+        .catch(error => console.error('Error:', error));
+    });
+}
+</script>
+

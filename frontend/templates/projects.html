@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Projects</title>
+</head>
+<body>
+    <h1>Projects</h1>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>PDF</th>
+        </tr>
+        {% for project in projects %}
+        <tr>
+            <td><a href="{{ url_for('get_project', project_id=project.id) }}">{{ project.name }}</a></td>
+            <td>{{ project.description }}</td>
+            <td>{{ project.status }}</td>
+            <td><a href="{{ url_for('get_project_pdf', project_id=project.id) }}">Download PDF</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

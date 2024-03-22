@@ -5,6 +5,10 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
+    <div id="menu">
+        <a href="{{ url_for('welcome') }}">Home</a>
+        <a href="{{ url_for('get_projects') }}">Projects</a>
+    </div>
     <div id="projectContainer">
         <div id="projectDetails">
             <h1>{{ project.name }}</h1>

@@ -4,7 +4,12 @@ import os
 
 app = Flask(__name__)
 
-API_URL = 'http://api:8000'  # replace with your FastAPI server URL
+ENVIRONMENT = os.environ.get('ENV')
+
+if ENVIRONMENT == 'local':
+    API_URL = 'http://localhost:8000'
+if ENVIRONMENT == 'kubernetes':
+    API_URL = 'http://api-service:8000'
 
 @app.route('/', methods=['GET'])
 def welcome():

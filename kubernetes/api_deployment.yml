@@ -1,0 +1,55 @@
+# API Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+      - name: api
+        image: razibulhasan/project_management_api # replace with the actual image name
+        env:
+        - name: ENV
+          value: kubernetes
+        - name: DB_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: postgres-credentials
+              key: username
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-credentials
+              key: password
+        ports:
+        - containerPort: 8000
+        volumeMounts:
+        - name: pdfs
+          mountPath: /app/pdfs
+      volumes:
+      - name: pdfs
+        persistentVolumeClaim:
+          claimName: pdfs
+---
+# API Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-service
+spec:
+  type: NodePort
+  selector:
+    app: api
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+      nodePort: 32000

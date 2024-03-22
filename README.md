@@ -1,28 +1,24 @@
-<!-- # FastApi_DockerCompose
+# FastApi_DockerCompose
 
 ## Project Overview
 
-This is a FastAPI project that utilizes Docker Compose for seamless deployment. The project follows a structured approach centered around the concept of "projects". Each project is characterized by a name, description, status, and an associated PDF file. The project leverages PostgreSQL as its database and Docker Compose to efficiently manage services, including volumes for storing the PDF files.
+This is a FastAPI project that now includes a frontend interface, enhancing the user experience and interaction. The project utilizes Docker Compose for seamless local deployment and Minikube for Kubernetes deployment, making it more scalable and reliable. 
+
+The project follows a structured approach centered around the concept of "projects". Each project is characterized by a name, description, status, and an associated PDF file. The project leverages PostgreSQL as its database and Docker Compose to efficiently manage services, including volumes for storing the PDF files.
+
+For Kubernetes deployment, we use Minikube, a tool that runs a single-node Kubernetes cluster in a virtual machine on your personal computer. This allows for testing the Kubernetes deployment in a local environment before moving to production.
+
+The addition of a frontend interface provides a more intuitive way for users to interact with the projects. It is designed to be user-friendly, providing easy access to the project's features and functionalities.
 
 ## Reqiuirement
+### Running local 
 [Docker](https://www.docker.com/products/docker-desktop/) needs to be installed
+### Running in Minikube
+[Minikube](https://minikube.sigs.k8s.io/docs/start/) needs to be installed
+<!-- [ArgoCd](https://argo-cd.readthedocs.io/en/stable/getting_started/) -->
 
 ## Project Structure
 
-- `main.py`: This is the main entry point of the application. It defines the FastAPI app and all the endpoints.
-- `crud.py`: This file contains the CRUD operations for the "projects".
-- `database.py`: This file sets up the database connection.
-- `models.py`: This file defines the SQLAlchemy models.
-- `schemas.py`: This file defines the Pydantic models.
-
-## Endpoints
-
-- `POST /projects/`: Create a new project. The name, description, status, and PDF file are sent as form data.
-- `GET /projects/`: Get a list of all projects.
-- `GET /projects/{project_id}`: Get the details of a specific project.
-- `GET /projects/{project_id}/pdf`: Download the PDF file of a specific project.
-- `PUT /projects/{project_id}`: Update the details of a specific project. The name, description, status, and PDF file can be updated.
-- `DELETE /projects/{project_id}`: Delete a specific project.
 
 ## Running the Project
 Before running the project, you need to set up the following environment variables:
@@ -30,12 +26,21 @@ Before running the project, you need to set up the following environment variabl
 - `DB_USERNAME`: The username of the database.
 - `DB_PASSWORD`: The password of the database.
 
-
-To run the project, use Docker Compose:
+To run the project locally, use Docker Compose:
 
 ```
 docker-compose up
 ```
-Then fast api swagger ui can be accessed at ```localhost:8000/docs``` -->
+Then fast api swagger ui can be accessed at ```localhost:8000/docs```
+
+To run the project in Minikube:
+```
+sh minikube_deploy.sh
+```
+Then to accesss the frontend :
+```
+minikube service frontend-service
+```
+
 
 

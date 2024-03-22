@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Teko:wght@300..700&display=swap');
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+body {
+    background-color: #ffffff;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+a {
+    color: blue;
+    transition: color 0.3s;
+    text-decoration: none;
+}
+
+a:hover {
+    color: red;
+}
+
+a:active {
+    color: green;
+}
+
+table {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+th, td {
+    padding: 15px;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#project-title {
+    font-family: "Teko", sans-serif;
+    font-size: 60px;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    text-align: center;
+
+}
+
+#view-projects{
+    font-family: "Teko", sans-serif;
+    font-size: 40px;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    text-align: center;
+
+}
+
+#view-projects a {
+    color: rgb(6, 183, 100);
+    transition: color 0.3s;
+    text-decoration: none;
+}
+
+#view-projects a:hover {
+    color: rgb(0, 158, 216);
+}
+
+
+
+#table-headings{
+    font-family: "Teko", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    background-color: rgb(145, 212, 251);
+    font-size: 18px;
+}
+
+#table-elements{
+    background-color: rgb(162, 255, 212);
+    font-family: "Space Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+}
+
+#projectContainer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+#projectDetails, #projectForm {
+    flex: 1;
+    max-width: 500px;
+}
+
+#updateProjectForm, #deleteProjectForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#button-update {
+    font-size: 15px;
+    background-color: rgb(121, 220, 238);
+    width: 50%;
+}
+
+#button-delete {
+    font-size: 15px;
+    width: 50%;
+    background-color: rgb(243, 87, 87);
+}
+
+

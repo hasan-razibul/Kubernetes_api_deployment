@@ -2,18 +2,19 @@
 <html>
 <head>
     <title>Projects</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <h1>Projects</h1>
     <table>
-        <tr>
+        <tr id="table-headings">
             <th>Name</th>
             <th>Description</th>
             <th>Status</th>
             <th>PDF</th>
         </tr>
         {% for project in projects %}
-        <tr>
+        <tr id="table-elements">
             <td><a href="{{ url_for('get_project', project_id=project.id) }}">{{ project.name }}</a></td>
             <td>{{ project.description }}</td>
             <td>{{ project.status }}</td>

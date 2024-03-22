@@ -2,25 +2,33 @@
 <html>
 <head>
     <title>Project Details</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>{{ project.name }}</h1>
-    <p>{{ project.description }}</p>
-    <p>Status: {{ project.status }}</p>
-    <a href="{{ url_for('get_project_pdf', project_id=project.id) }}">Download PDF</a>
-    <form id="updateProjectForm" method="post" enctype="multipart/form-data">
-        <input type="text" name="name" placeholder="Name" value="{{ project.name }}">
-        <input type="text" name="description" placeholder="Description" value="{{ project.description }}">
-        <select name="status">
-            <option value="active" {% if project.status == 'active' %}selected{% endif %}>Active</option>
-            <option value="inactive" {% if project.status == 'inactive' %}selected{% endif %}>Inactive</option>
-        </select>
-        <input type="file" name="pdf_file">
-        <input type="submit" value="Update">
-    </form>
-    <form id="deleteProjectForm" method="POST" action="{{ url_for('delete_project', project_id=project.id) }}">
-        <input type="submit" value="Delete">
-    </form>
+    <div id="projectContainer">
+        <div id="projectDetails">
+            <h1>{{ project.name }}</h1>
+            <p>{{ project.description }}</p>
+            <p>Status: {{ project.status }}</p>
+            <a href="{{ url_for('get_project_pdf', project_id=project.id) }}">Download PDF</a>
+        </div>
+        <div id="projectForm">
+            <h2>Edit Project</h2>
+            <form id="updateProjectForm" method="post" enctype="multipart/form-data">
+                <input type="text" name="name" placeholder="Name" value="{{ project.name }}">
+                <input type="text" name="description" placeholder="Description" value="{{ project.description }}">
+                <select name="status">
+                    <option value="active" {% if project.status == 'active' %}selected{% endif %}>Active</option>
+                    <option value="inactive" {% if project.status == 'inactive' %}selected{% endif %}>Inactive</option>
+                </select>
+                <input type="file" name="pdf_file">
+                <input id="button-update" type="submit" value="Update">
+            </form>
+            <form id="deleteProjectForm" method="POST" action="{{ url_for('delete_project', project_id=project.id) }}">
+                <input id="button-delete" type="submit" value="Delete">
+            </form>
+        </div>
+    </div>
 </body>
 </html>
 

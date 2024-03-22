@@ -47,16 +47,18 @@ window.onload = function() {
     });
     document.getElementById('deleteProjectForm').addEventListener('submit', function(event) {
         event.preventDefault();
-        fetch(`/projects/${projectId}`, {
-            method: 'DELETE',
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-        })
-        .then(() => window.location.href = `/projects`)  // redirect to the /projects route
-        .catch(error => console.error('Error:', error));
+        if (confirm('Are you sure you want to delete this project?')) {
+            fetch(`/projects/${projectId}`, {
+                method: 'DELETE',
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+            })
+            .then(() => window.location.href = `/projects`)  // redirect to the /projects route
+            .catch(error => console.error('Error:', error));
+        }
     });
 }
 </script>

@@ -1,4 +1,4 @@
-# FastApi_DockerCompose
+<!-- # FastApi_DockerCompose
 
 ## Project Overview
 
@@ -36,6 +36,6 @@ To run the project, use Docker Compose:
 ```
 docker-compose up
 ```
-Then fast api swagger ui can be accessed at ```localhost:8000/docs```
+Then fast api swagger ui can be accessed at ```localhost:8000/docs``` -->
 
 

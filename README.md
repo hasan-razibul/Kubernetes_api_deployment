@@ -10,7 +10,7 @@ For Kubernetes deployment, we use Minikube, a tool that runs a single-node Kuber
 
 The addition of a frontend interface provides a more intuitive way for users to interact with the projects. It is designed to be user-friendly, providing easy access to the project's features and functionalities.
 
-## Reqiuirement
+## Requirements
 ### Running local 
 [Docker](https://www.docker.com/products/docker-desktop/) needs to be installed
 ### Running in Minikube
@@ -23,23 +23,33 @@ The addition of a frontend interface provides a more intuitive way for users to 
 ## Running the Project
 Before running the project, you need to set up the following environment variables:
 
-- `DB_USERNAME`: The username of the database.
-- `DB_PASSWORD`: The password of the database.
+- `DB_USERNAME`: username for database.
+- `DB_PASSWORD`: password for database.
 
 To run the project locally, use Docker Compose:
 
 ```
 docker-compose up
 ```
-Then fast api swagger ui can be accessed at ```localhost:8000/docs```
+Then frontend can be accessed at ```localhost:5001```</br>
+The fast api swagger ui can be accessed at ```localhost:8000/docs```</br> 
+The swagger ui can be used to create projects.
 
-To run the project in Minikube:
+To run the project in Minikube:</br>
+1. The images for /frontend and /api need to be built and pushed to an image registry like dockerhub. 
+2. update the image name under api_deployment and frontend_deployment yaml files
+
+then run
 ```
 sh minikube_deploy.sh
 ```
-Then to accesss the frontend :
+Then to access the frontend:
 ```
 minikube service frontend-service
+```
+Then to access the api swagger ui:
+```
+minikube service api-service
 ```
 
 

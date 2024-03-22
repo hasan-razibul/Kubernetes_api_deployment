@@ -19,7 +19,6 @@ services:
 
   api:
     build: ./api
-    command: bash -c "uvicorn main:app --host 0.0.0.0 --port 8000"
     ports:
       - 8000:8000
     volumes:
@@ -27,6 +26,7 @@ services:
     depends_on:
       - db
     environment:
+      ENV: local
       DB_USERNAME: ${DB_USERNAME}
       DB_PASSWORD: ${DB_PASSWORD}
 
@@ -38,6 +38,8 @@ services:
       - ./frontend:/app
     depends_on:
       - api
+    environment:
+      ENV: local
 
 volumes:
   db-data:  

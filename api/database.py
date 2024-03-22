@@ -6,8 +6,8 @@ import os
 
 db_username = os.environ.get('DB_USERNAME')
 db_password = os.environ.get('DB_PASSWORD')
+ENVIRONAMENT = os.environ.get("ENV")
 
-ENVIRONAMENT = os.getenv("ENV")
 if ENVIRONAMENT == "local":
     DATABASE_URL = f"postgresql://{db_username}:{db_password}@db/postgres"
 if ENVIRONAMENT == "kubernetes":
